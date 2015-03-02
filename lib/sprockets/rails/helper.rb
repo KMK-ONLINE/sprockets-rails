@@ -192,14 +192,6 @@ module Sprockets
           if asset && asset_needs_precompile?(asset.logical_path, asset.pathname.to_s)
             raise AssetFilteredError.new(asset.logical_path)
           end
-
-          full_prefix = File.join(self.assets_prefix || "/", '')
-          if !asset && source.start_with?(full_prefix)
-            short_path = source[full_prefix.size, source.size]
-            if lookup_asset_for_path(short_path, options)
-              raise AbsoluteAssetPathError.new(source, short_path, full_prefix)
-            end
-          end
         end
 
         # Returns true when an asset will not be available after precompile is run
